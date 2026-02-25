@@ -4,24 +4,28 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private OldInput _oldInput;
+    private NewInput _newInput;
     public float speed;
+    private Rigidbody2D _rb;
 
     // Start is called before the first frame update
     void Start()
     {
-        _oldInput = GetComponent<OldInput>();
+        PlayerStats.score = 0;
+        _newInput = GetComponent<NewInput>();
+        _rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
        Movement(); 
     }
 
     public void Movement()
     {
-        transform.Translate(Vector3.right * speed * _oldInput.horizontal * Time.deltaTime );
-        transform.Translate(Vector3.up * speed * _oldInput.vertical * Time.deltaTime );
+        //transform.Translate(Vector3.right * speed * _newInput.inputX * Time.deltaTime );
+        //transform.Translate(Vector3.up * speed * _oldInput.vertical * Time.deltaTime );
+        _rb.velocity = new Vector2(_newInput.inputX * speed,_rb.velocity.y);
     }
 }
