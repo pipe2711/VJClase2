@@ -593,7 +593,7 @@ Transform:
   m_GameObject: {fileID: 674530650}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.45111108, y: -1.0799999, z: -10}
+  m_LocalPosition: {x: -0.97111106, y: -0.20999992, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -688,7 +688,7 @@ Transform:
   m_GameObject: {fileID: 690441800}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.45111108, y: -1.0799999, z: -10}
+  m_LocalPosition: {x: -0.97111106, y: -0.20999992, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1118,7 +1118,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 1221899977, guid: 85f71820db98b4d748575d3b6151ae3a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e6b10498dd490444d9db4de9c9ff94e8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1138,7 +1138,7 @@ Transform:
   m_GameObject: {fileID: 976234680}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.3, y: -2.44, z: 0}
+  m_LocalPosition: {x: -2.82, y: -1.57, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -1176,18 +1176,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0070001483, y: 0.4272094}
+  m_Offset: {x: -0.0669229, y: -0.20397893}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0}
-    oldSize: {x: 2, y: 2}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 4.1666665, y: 2.2916667}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.66118884, y: 0.82312196}
+  m_Size: {x: 1.1274719, y: 1.630588}
   m_EdgeRadius: 0
 --- !u!50 &976234684
 Rigidbody2D:
@@ -1274,6 +1274,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: eab3ae21-f2b8-4ee9-a6a9-22962a454bd7
     m_ActionName: Player/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 976234688}
+        m_TargetAssemblyTypeName: NewInput, Assembly-CSharp
+        m_MethodName: AttackAction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 60d72e19-4dbe-4df1-bd25-98bf691b5142
+    m_ActionName: Player/Attack[/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -1292,6 +1308,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputX: 0
+  attackPressed: 0
 --- !u!114 &976234689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1926,7 +1943,7 @@ Transform:
   m_GameObject: {fileID: 1764971122}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.0201, y: -1.2586, z: 0}
+  m_LocalPosition: {x: -8.24, y: -1.2, z: 0}
   m_LocalScale: {x: 2.6397, y: 2.5372, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

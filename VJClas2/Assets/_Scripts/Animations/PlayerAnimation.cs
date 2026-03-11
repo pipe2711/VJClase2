@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayerAnimation : MonoBehaviour
 {
     private Animator _animator;
-    private NewInput _newInput;
     private Animator _entrar;
+    private NewInput _newInput;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +20,7 @@ public class PlayerAnimation : MonoBehaviour
     {
         PlayerMoveAnim();
         ent();
+        AttackAnim();
     }
 
     public void PlayerMoveAnim()
@@ -31,5 +32,14 @@ public class PlayerAnimation : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.P))
             _entrar.SetTrigger("Entrar");
+    }
+
+    void AttackAnim()
+    {
+        if (_newInput.attackPressed)
+        {
+            _animator.SetTrigger("Attack");
+            _newInput.attackPressed = false;
+        }
     }
 }

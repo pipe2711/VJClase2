@@ -8,6 +8,7 @@ public class NewInput : MonoBehaviour
     private PlayerInput playerInput;
     [HideInInspector] public float inputX;
     private PlayerJump _playerJump;
+    [HideInInspector] public bool attackPressed;
 
     // Al inicio de juego
     private void Start()
@@ -45,5 +46,15 @@ public class NewInput : MonoBehaviour
 
         // Forma con formato
        // Debug.Log(string.Format("Movimiento: {0}", inputX));
+    }
+
+    public void AttackAction(InputAction.CallbackContext context)
+    {
+        //if (_playerController.dead) return;
+
+        if (context.started)
+        {
+            attackPressed = true;
+        }
     }
 }
