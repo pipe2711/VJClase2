@@ -8,6 +8,7 @@ public class PlayerShoot : MonoBehaviour
     public GameObject bulletPrefab;
     public Transform originBuller;
 
+    // Limita la cantidad de balas que pueden estar en pantalla al mismo tiempo
     public int maxShots = 3;
     private List<GameObject> activeBullets = new List<GameObject>();
 
