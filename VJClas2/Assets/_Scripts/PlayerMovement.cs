@@ -23,11 +23,12 @@ public class PlayerMovement : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    // Update is called once per frame
+    //Update is called once per frame
     void FixedUpdate()
     {
         Movement(); 
 
+        
         float horizontalInput = _newInput.inputX;
 
         if (horizontalInput > 0.1f && !facingRight)
@@ -36,20 +37,23 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (horizontalInput < -0.1f && facingRight)
         {
-        Flip();
+            Flip();
         }
-
+        
     }
+    
 
     public void Movement()
     {
         //transform.Translate(Vector3.right * speed * _newInput.inputX * Time.deltaTime );
         //transform.Translate(Vector3.up * speed * _oldInput.vertical * Time.deltaTime );
-        //_rb.velocity = new Vector2(_newInput.inputX * speed,_rb.velocity.y);
-        transform.Translate(Vector3.right * speed * _newInput.inputX * Time.deltaTime);
+        _rb.velocity = new Vector2(_newInput.inputX * speed,_rb.velocity.y);
+        //transform.Translate(Vector3.right * speed * _newInput.inputX * Time.deltaTime);
+        Flip();
     
     }
 
+    /*
     void FlipCheck()
     {
         float horizontalInput = _newInput.inputX;
@@ -59,11 +63,24 @@ public class PlayerMovement : MonoBehaviour
         else if (horizontalInput < -0.1f && facingRight)
             Flip();
     }
+    */
 
-    void Flip()
+    //void Flip()
+    //{
+        //facingRight = !facingRight;
+        //spriteRenderer.flipX = !spriteRenderer.flipX;
+    //}
+
+    public void Flip()
     {
-        facingRight = !facingRight;
-        spriteRenderer.flipX = !spriteRenderer.flipX;
+        if(_newInput.inputX > 0)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+        else if(_newInput.inputX < 0)
+        {
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+        }
     }
 
 }
