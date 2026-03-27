@@ -22,7 +22,16 @@ public class Buller : MonoBehaviour
     {
         if(collision.CompareTag("Enemy"))
         {
+            // Destruye al enemigo
             Destroy(collision.gameObject);
+            // Destruye la bala
+            Destroy(gameObject);
+        }
+        // Si choca con otro objeto que sea el nivel (asegúrate de que tengan el tag "Ground" o "Wall")
+        else if (collision.CompareTag("Ground") || collision.CompareTag("Wall"))
+        {
+            // Destruye la bala
+            Destroy(gameObject);
         }
     }
 }
