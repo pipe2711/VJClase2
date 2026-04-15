@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6459ca841cf2443192ac6e72ca7b565, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coinValue: 5
+  coinValue: 3
 --- !u!95 &3226892138068049169
 Animator:
   serializedVersion: 5

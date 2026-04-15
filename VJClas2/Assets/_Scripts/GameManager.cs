@@ -1,20 +1,29 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("Índice de Escena")]
+    private int nextSceneIndex;  
+                  
+    // ─── Métodos públicos (llamados desde botones u otros scripts) ────────────
+
     public void StartGame()
     {
-        // Carga la escena de Intro / Diálogo (Índice 1)
-        SceneManager.LoadScene(1);
+        nextSceneIndex = 1;   // Escena de Intro / Diálogo
+        LoadNextScene();
     }
 
     public void LoadGameScene()
     {
-        // Carga la escena del juego base (Índice 2)
-        SceneManager.LoadScene(2);
+        nextSceneIndex = 2;   // Escena del juego base
+        LoadNextScene();
+    }
+
+    // Método genérico: cualquier script puede ajustar nextSceneIndex y llamar esto
+    public void GoToNextScene()
+    {
+        LoadNextScene();
     }
 
     public void Quit()
@@ -22,5 +31,9 @@ public class GameManager : MonoBehaviour
         Application.Quit();
         Debug.Log("Saliendo del juego");
     }
-}
 
+    private void LoadNextScene()
+    {
+        SceneManager.LoadScene(nextSceneIndex);
+    }
+}

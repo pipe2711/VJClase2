@@ -10,7 +10,7 @@ public class Coins : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            PlayerStats.score += coinValue;
+            PlayerStats.AddScore(coinValue);
             Debug.Log(PlayerStats.score);
             Destroy(gameObject);
         }
