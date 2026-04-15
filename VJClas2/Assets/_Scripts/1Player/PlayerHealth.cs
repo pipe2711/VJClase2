@@ -32,6 +32,25 @@ public class PlayerHealth : MonoBehaviour
         Physics2D.IgnoreLayerCollision(3, 6, false);
     }
 
+    IEnumerator Die()
+    {
+        _animator.SetTrigger("isDead");
+
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+
+        // 🔥 detener movimiento
+        rb.velocity = Vector2.zero;
+
+        // 🔥 desactivar control del jugador
+        GetComponent<PlayerMovement>().enabled = false;
+
+        // 🔥 congelar física
+        rb.bodyType = RigidbodyType2D.Static;
+
+        yield return new WaitForSeconds(2f);
+
+        Destroy(gameObject);
+    }
     /*public void ReceibeDamage()
     {
         if (_currentHealth > 1)
@@ -40,7 +59,7 @@ public class PlayerHealth : MonoBehaviour
         }
         else
         {
-            //_animator.SetTrigger("isDead");
+            _animator.SetTrigger("isDead");
             Destroy(gameObject);
         }
     }*/
@@ -55,9 +74,10 @@ public class PlayerHealth : MonoBehaviour
         {
             _currentHealth = 0;
 
-            OnHealthChanged?.Invoke(_currentHealth, maxHealth); // 👈 importante
+            OnHealthChanged?.Invoke(_currentHealth, maxHealth);
 
-            Destroy(gameObject);
+            StartCoroutine(Die());
+
         }
     }
 }
