@@ -58,13 +58,27 @@ public class EnemyShoot : MonoBehaviour
         // Se obtiene la direccion hacia el player
         Vector2 direction = (player.gameObject.transform.position - transform.position);
 
+        // Se voltea el enemigo dependiendo de la direccion en X hacia el jugador
+        Vector3 scale = transform.localScale;
+        if (direction.x < 0)
+        {
+            // Si es menor a 0: Dispara hacia la izquierda (mantiene la escala positiva)
+            scale.x = Mathf.Abs(scale.x);
+        }
+        else if (direction.x > 0)
+        {
+            // Si es mayor a 0: Dispara hacia la derecha (invierte la escala para hacer flip)
+            scale.x = -Mathf.Abs(scale.x);
+        }
+        transform.localScale = scale;
+
         // Se crea la bala
         GameObject bullet = Instantiate(enemyBullet, shootPos.position, Quaternion.identity, transform);
 
         // Se le da velocidad a la bala
         bullet.GetComponent<Rigidbody2D>().velocity = direction * bulletSpeed;
 
-            Debug.Log(bullet.GetComponent<Rigidbody2D>().velocity);
+        Debug.Log(bullet.GetComponent<Rigidbody2D>().velocity);
 
 
         if (bullet != null)
