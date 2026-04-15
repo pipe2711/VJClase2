@@ -24,6 +24,8 @@ public class PlayerShoot : MonoBehaviour
             {
                 GameObject bullet = Instantiate(bulletPrefab, originBuller.position, originBuller.rotation);
                 activeBullets.Add(bullet);
+
+                AudioManager.instance.PlayShoot();
                 
                 // La bala se destruirá en 1 segundo (o antes si choca con una pared/enemigo)
                 Destroy(bullet, 1);

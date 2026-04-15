@@ -36,6 +36,8 @@ public class PlayerHealth : MonoBehaviour
     {
         _animator.SetTrigger("isDead");
 
+        AudioManager.instance.PlayDeath();
+
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
 
         // 🔥 detener movimiento
@@ -48,6 +50,7 @@ public class PlayerHealth : MonoBehaviour
         rb.bodyType = RigidbodyType2D.Static;
 
         yield return new WaitForSeconds(2f);
+
 
         Destroy(gameObject);
     }

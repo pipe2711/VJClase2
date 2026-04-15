@@ -64,6 +64,9 @@ public class EnemyShoot : MonoBehaviour
         // Se le da velocidad a la bala
         bullet.GetComponent<Rigidbody2D>().velocity = direction * bulletSpeed;
 
+            Debug.Log(bullet.GetComponent<Rigidbody2D>().velocity);
+
+
         if (bullet != null)
         {
             // Si la bala no se ha destruido, la destruye despues de 2 segundos
