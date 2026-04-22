@@ -35,7 +35,7 @@ AnimatorController:
   m_Name: WalkEnemy2
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: kill enemy
+  - m_Name: KillEnemy
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -89,7 +89,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: kill enemy
+    m_ConditionEvent: KillEnemy
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -8951877308690269464}

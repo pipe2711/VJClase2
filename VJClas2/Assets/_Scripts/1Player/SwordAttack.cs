@@ -4,26 +4,30 @@ public class SwordAttack : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Golpe detectado con: " + collision.name);
-
+        // 🔥 ENEMIGOS NORMALES
         if (collision.CompareTag("Enemy"))
         {
-            Debug.Log("ENEMIGO GOLPEADO");
-
             EnemyMovement enemyMove = collision.GetComponentInParent<EnemyMovement>();
             if (enemyMove != null)
-            {
                 enemyMove.canMove = false;
-            }
 
             Animator enemyAnim = collision.GetComponentInParent<Animator>();
             if (enemyAnim != null)
-            {
-                enemyAnim.SetTrigger("kill enemy");
-            }
+                enemyAnim.SetTrigger("KillEnemy");
 
-            GameObject rootEnemy = enemyMove != null ? enemyMove.gameObject : collision.gameObject;
-            Destroy(rootEnemy, 0.5f);
+            if (enemyMove != null)
+                Destroy(enemyMove.gameObject, 0.5f);
+        }
+
+        // 🔥 BOSS
+        if (collision.CompareTag("Boss"))
+        {
+            Boss boss = collision.GetComponentInParent<Boss>();
+
+            if (boss != null)
+            {
+                boss.TakeDamage(1);
+            }
         }
     }
 }

@@ -15,31 +15,32 @@ public class PlayerAttack : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Enemy"))
+        // 🔥 SOLO enemigos normales
+        if (collision.CompareTag("Enemy"))
         {
             _rb.AddForce(transform.up * bounceForce, ForceMode2D.Impulse);
-            
+
             EnemyMovement enemyMove = collision.GetComponentInParent<EnemyMovement>();
             if (enemyMove != null)
-            {
                 enemyMove.canMove = false;
-            }
-            
-            Animator enemyAnim = collision.GetComponentInParent<Animator>(); 
-            if (enemyAnim == null)
-            {
-                enemyAnim = collision.transform.parent != null 
-                    ? collision.transform.parent.GetComponentInChildren<Animator>() 
-                    : collision.GetComponentInChildren<Animator>();
-            }
 
+            Animator enemyAnim = collision.GetComponentInParent<Animator>();
             if (enemyAnim != null)
-            {
-                enemyAnim.SetTrigger("kill enemy");
-            }
-            
+                enemyAnim.SetTrigger("KillEnemy");
+
             GameObject rootEnemy = enemyMove != null ? enemyMove.gameObject : collision.gameObject;
             Destroy(rootEnemy, 0.5f);
+        }
+
+        // 🔥 BOSS (solo si cae desde arriba)
+        if (collision.CompareTag("Boss") && _rb.velocity.y < 0)
+        {
+            Boss boss = collision.GetComponentInParent<Boss>();
+
+            if (boss != null)
+            {
+                boss.TakeDamage(1);
+            }
         }
     }
 }
