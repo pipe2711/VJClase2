@@ -2538,7 +2538,7 @@ Transform:
   m_GameObject: {fileID: 674530650}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 117.005516, y: -1.4824, z: -10}
+  m_LocalPosition: {x: -5.6944895, y: 1.9476001, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2583,7 +2583,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.14208794, g: 0.27830958, b: 0.2924528, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -2633,7 +2633,7 @@ Transform:
   m_GameObject: {fileID: 690441800}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 117.005516, y: -1.4824, z: -10}
+  m_LocalPosition: {x: -5.6944895, y: 1.9476001, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4047,7 +4047,7 @@ Tilemap:
       m_AnimatedSprites:
       - {fileID: -926769390, guid: 85f71820db98b4d748575d3b6151ae3a, type: 3}
       - {fileID: -782672677, guid: 85f71820db98b4d748575d3b6151ae3a, type: 3}
-      m_AnimationSpeed: 10.000001
+      m_AnimationSpeed: 10
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 1, y: 1, z: 0}
@@ -4571,7 +4571,7 @@ Transform:
   m_GameObject: {fileID: 976234680}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 114.4, y: -2.49, z: 0}
+  m_LocalPosition: {x: -8.3, y: 0.94, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -9913,6 +9913,7 @@ MonoBehaviour:
   shoot: {fileID: 8300000, guid: 33c70924a055f47238fd670f2b673403, type: 3}
   bullet: {fileID: 8300000, guid: ef9ea5d4d56ae41e7b7f88627db8ed87, type: 3}
   damage: {fileID: 8300000, guid: ee63b21b664384377b049b9ae067ba53, type: 3}
+  bossDeath: {fileID: 8300000, guid: 5d2a7e88bb48b41e3adb46c8f10552cf, type: 3}
   bgMusicVolSlider: {fileID: 754676228}
 --- !u!82 &1283289854
 AudioSource:
@@ -12465,8 +12466,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5005f299d33a427b8c6b79302264fbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreTextGameOver: {fileID: 1310427206}
   gameOverUI: {fileID: 805789929}
+  scoreTextGameOver: {fileID: 1310427206}
   winUI: {fileID: 375987264}
   winText: {fileID: 0}
 --- !u!4 &2076654809

@@ -16,6 +16,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip shoot;
     public AudioClip bullet;
     public AudioClip damage;
+    public AudioClip bossDeath;
 
     public Slider bgMusicVolSlider;
 
@@ -64,6 +65,11 @@ public class AudioManager : MonoBehaviour
     public void PlayDamage()
     {
         PlaySound(damage);
+    }
+
+    public void PlayBossDeath()
+    {
+        PlaySound(bossDeath);
     }
 
     private void PlaySound(AudioClip clip)

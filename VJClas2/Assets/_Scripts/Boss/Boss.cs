@@ -39,6 +39,7 @@ public class Boss : MonoBehaviour
         if (isDead) yield break;
 
         isDead = true;
+        AudioManager.instance.PlayBossDeath();
 
         Debug.Log("BOSS DERROTADO");
 
