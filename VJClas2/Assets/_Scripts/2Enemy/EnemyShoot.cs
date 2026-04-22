@@ -47,6 +47,7 @@ public class EnemyShoot : MonoBehaviour
         if (distance < minDistance && Time.time > _cooldown)
         {
             Shoot();
+            AudioManager.instance.PlayBullet();
 
             // Se refresca nuevamente ek tiempo de disparo
             _cooldown = Time.time + timeBetweenShots;

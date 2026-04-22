@@ -14,6 +14,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip coin;
     public AudioClip death;
     public AudioClip shoot;
+    public AudioClip bullet;
 
     public Slider bgMusicVolSlider;
 
@@ -52,6 +53,11 @@ public class AudioManager : MonoBehaviour
     public void PlayShoot()
     {
         PlaySound(shoot);
+    }
+
+    public void PlayBullet()
+    {
+        PlaySound(bullet);
     }
 
     private void PlaySound(AudioClip clip)

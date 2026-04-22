@@ -7854,6 +7854,7 @@ MonoBehaviour:
   coin: {fileID: 8300000, guid: 2dd7745458294430883405652544fdb3, type: 3}
   death: {fileID: 8300000, guid: 91df82fa8c85347b5956c03b0733a4db, type: 3}
   shoot: {fileID: 8300000, guid: 33c70924a055f47238fd670f2b673403, type: 3}
+  bullet: {fileID: 8300000, guid: ef9ea5d4d56ae41e7b7f88627db8ed87, type: 3}
   bgMusicVolSlider: {fileID: 754676228}
 --- !u!82 &1283289854
 AudioSource:
