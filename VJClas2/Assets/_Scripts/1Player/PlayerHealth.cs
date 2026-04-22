@@ -52,6 +52,8 @@ public class PlayerHealth : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
 
+        // 🔥 AVISAR AL GAMEMANAGER
+        GameManager.Instance.PlayerDied();
 
         Destroy(gameObject);
     }

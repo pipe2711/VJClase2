@@ -1,11 +1,31 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    public TextMeshProUGUI scoreTextGameOver;
+
+    public static GameManager Instance;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     [Header("Índice de Escena")]
-    private int nextSceneIndex;  
-                  
+    private int nextSceneIndex;
+
+    [Header("UI")]
+    public GameObject gameOverUI;
+
     // ─── Métodos públicos (llamados desde botones u otros scripts) ────────────
 
     public void StartGame()
@@ -20,7 +40,6 @@ public class GameManager : MonoBehaviour
         LoadNextScene();
     }
 
-    // Método genérico: cualquier script puede ajustar nextSceneIndex y llamar esto
     public void GoToNextScene()
     {
         LoadNextScene();
@@ -31,6 +50,38 @@ public class GameManager : MonoBehaviour
         Application.Quit();
         Debug.Log("Saliendo del juego");
     }
+
+    public void PlayerDied()
+    {
+        gameOverUI.SetActive(true);
+        Time.timeScale = 0f;
+
+        scoreTextGameOver.text = "Score: " + PlayerStats.score;
+    }
+
+    // 🔄 BOTÓN REINTENTAR
+    public void RestartLevel()
+    {
+        Time.timeScale = 1f;
+
+        PlayerStats.score = 0;
+        PlayerStats.OnScoreChanged?.Invoke(PlayerStats.score); // 🔥 ESTA LÍNEA
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    // 🏠 BOTÓN MENÚ
+    public void GoToMenu()
+    {
+        Time.timeScale = 1f;
+
+        PlayerStats.score = 0;
+        PlayerStats.OnScoreChanged?.Invoke(PlayerStats.score);
+
+        SceneManager.LoadScene(0);
+    }
+
+    // ─── Método interno ───────────────────────────────────────────────────────
 
     private void LoadNextScene()
     {
