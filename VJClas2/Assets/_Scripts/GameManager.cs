@@ -1,90 +1,147 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance;
+
+    [Header("UI - Game Over")]
+    public GameObject gameOverUI;
     public TextMeshProUGUI scoreTextGameOver;
 
-    public static GameManager Instance;
+    [Header("UI - Win")]
+    public GameObject winUI;
+    public TextMeshProUGUI winText;
 
     private void Awake()
     {
         if (Instance == null)
-        {
             Instance = this;
-        }
         else
-        {
             Destroy(gameObject);
-        }
     }
 
-    [Header("Índice de Escena")]
-    private int nextSceneIndex;
+    private void OnEnable()
+    {
+        Time.timeScale = 1f;
+    }
 
-    [Header("UI")]
-    public GameObject gameOverUI;
-
-    // ─── Métodos públicos (llamados desde botones u otros scripts) ────────────
+    // ─────────────────────────────
+    // 🎮 MAIN MENU → INTRO
+    // ─────────────────────────────
 
     public void StartGame()
     {
-        nextSceneIndex = 1;   // Escena de Intro / Diálogo
-        LoadNextScene();
+        Time.timeScale = 1f;
+
+        // 🔥 RESET SCORE + UI FIX
+        PlayerStats.score = 0;
+        PlayerStats.OnScoreChanged?.Invoke(PlayerStats.score);
+
+        SceneManager.LoadScene(1); // Intro
     }
+
+    // ─────────────────────────────
+    // 🧩 DIALOGUE → GAMEPLAY
+    // ─────────────────────────────
 
     public void LoadGameScene()
     {
-        nextSceneIndex = 2;   // Escena del juego base
-        LoadNextScene();
+        Time.timeScale = 1f;
+
+        // 🔥 RESET SCORE + UI FIX (IMPORTANTE TAMBIÉN AQUÍ)
+        PlayerStats.score = 0;
+        PlayerStats.OnScoreChanged?.Invoke(PlayerStats.score);
+
+        SceneManager.LoadScene(2); // Gameplay
     }
 
-    public void GoToNextScene()
-    {
-        LoadNextScene();
-    }
-
-    public void Quit()
-    {
-        Application.Quit();
-        Debug.Log("Saliendo del juego");
-    }
+    // ─────────────────────────────
+    // 💀 GAME OVER
+    // ─────────────────────────────
 
     public void PlayerDied()
     {
-        gameOverUI.SetActive(true);
         Time.timeScale = 0f;
 
-        scoreTextGameOver.text = "Score: " + PlayerStats.score;
+        if (gameOverUI != null)
+            gameOverUI.SetActive(true);
+
+        if (scoreTextGameOver != null)
+            scoreTextGameOver.text = "Score: " + PlayerStats.score;
     }
 
-    // 🔄 BOTÓN REINTENTAR
     public void RestartLevel()
     {
         Time.timeScale = 1f;
 
+        // 🔥 RESET SCORE + UI FIX
         PlayerStats.score = 0;
-        PlayerStats.OnScoreChanged?.Invoke(PlayerStats.score); // 🔥 ESTA LÍNEA
+        PlayerStats.OnScoreChanged?.Invoke(PlayerStats.score);
 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(2);
     }
 
-    // 🏠 BOTÓN MENÚ
-    public void GoToMenu()
+    public void GoToMenuFromGameOver()
     {
         Time.timeScale = 1f;
 
+        // 🔥 RESET SCORE + UI FIX
         PlayerStats.score = 0;
         PlayerStats.OnScoreChanged?.Invoke(PlayerStats.score);
 
         SceneManager.LoadScene(0);
     }
 
-    // ─── Método interno ───────────────────────────────────────────────────────
+    // ─────────────────────────────
+    // 🏆 BOSS WIN
+    // ─────────────────────────────
 
-    private void LoadNextScene()
+    public void BossDefeated()
     {
-        SceneManager.LoadScene(nextSceneIndex);
+        Time.timeScale = 0f;
+
+        if (winUI != null)
+            winUI.SetActive(true);
+
+        if (winText != null)
+        {
+            winText.text =
+                "🎉 Congratulations!\n\n" +
+                "You completed the demo\n" +
+                "(Returning to menu...)";
+        }
+
+        StartCoroutine(ReturnToMenuAfterWin());
+    }
+
+    private IEnumerator ReturnToMenuAfterWin()
+    {
+        yield return new WaitForSecondsRealtime(4f);
+
+        Time.timeScale = 1f;
+
+        // 🔥 RESET SCORE + UI FIX
+        PlayerStats.score = 0;
+        PlayerStats.OnScoreChanged?.Invoke(PlayerStats.score);
+
+        SceneManager.LoadScene(0);
+    }
+
+    // ─────────────────────────────
+    // 🔄 MENU DIRECTO
+    // ─────────────────────────────
+
+    public void GoToMenu()
+    {
+        Time.timeScale = 1f;
+
+        // 🔥 RESET SCORE + UI FIX
+        PlayerStats.score = 0;
+        PlayerStats.OnScoreChanged?.Invoke(PlayerStats.score);
+
+        SceneManager.LoadScene(0);
     }
 }

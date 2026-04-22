@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class Boss : MonoBehaviour
 {
@@ -8,13 +9,10 @@ public class Boss : MonoBehaviour
     private Animator _anim;
     private bool isDead = false;
 
-    private BossController controller;
-
-    void Start()
+    private void Start()
     {
         currentHealth = maxHealth;
         _anim = GetComponent<Animator>();
-        controller = GetComponent<BossController>();
     }
 
     public void TakeDamage(int damage)
@@ -32,24 +30,34 @@ public class Boss : MonoBehaviour
         }
         else
         {
-            Die();
+            StartCoroutine(DieSequence());
         }
     }
 
-    void Die()
+    IEnumerator DieSequence()
     {
-        if (isDead) return;
+        if (isDead) yield break;
 
         isDead = true;
 
-        if (controller != null)
-            controller.enabled = false; // 🔥 detiene IA
+        Debug.Log("BOSS DERROTADO");
 
+        // 🔥 detener controlador
+        BossController controller = GetComponent<BossController>();
+        if (controller != null)
+            controller.enabled = false;
+
+        // 🔥 animación muerte
         if (_anim != null)
             _anim.SetTrigger("Death");
 
-        Debug.Log("BOSS DERROTADO");
+        // ⏳ esperar animación de muerte
+        yield return new WaitForSeconds(2f);
 
-        Destroy(gameObject, 2f);
+        // 🏆 mostrar victoria
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.BossDefeated();
+        }
     }
 }
