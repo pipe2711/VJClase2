@@ -24,6 +24,7 @@ public class PlayerHealth : MonoBehaviour
     {
         _currentHealth --;
 
+        AudioManager.instance.PlayDamage();
         OnHealthChanged?.Invoke(_currentHealth, maxHealth);
         _animator.SetBool("isDamage", true);
         Physics2D.IgnoreLayerCollision(3, 6, true);

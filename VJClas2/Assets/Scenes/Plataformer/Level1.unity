@@ -2634,7 +2634,7 @@ Tilemap:
       m_AnimatedSprites:
       - {fileID: -926769390, guid: 85f71820db98b4d748575d3b6151ae3a, type: 3}
       - {fileID: -782672677, guid: 85f71820db98b4d748575d3b6151ae3a, type: 3}
-      m_AnimationSpeed: 10
+      m_AnimationSpeed: 10.000001
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 3, y: 1, z: 0}
@@ -7855,6 +7855,7 @@ MonoBehaviour:
   death: {fileID: 8300000, guid: 91df82fa8c85347b5956c03b0733a4db, type: 3}
   shoot: {fileID: 8300000, guid: 33c70924a055f47238fd670f2b673403, type: 3}
   bullet: {fileID: 8300000, guid: ef9ea5d4d56ae41e7b7f88627db8ed87, type: 3}
+  damage: {fileID: 8300000, guid: ee63b21b664384377b049b9ae067ba53, type: 3}
   bgMusicVolSlider: {fileID: 754676228}
 --- !u!82 &1283289854
 AudioSource:
