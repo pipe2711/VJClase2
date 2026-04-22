@@ -7,15 +7,17 @@ public class PlayerAnimation : MonoBehaviour
     private Animator _animator;
     private Animator _entrar;
     private NewInput _newInput;
-    // Start is called before the first frame update
+
+    [Header("Ataque")]
+    public GameObject attackPoint; // 🔥 referencia al objeto de la espada
+
     void Start()
     {
-        _animator=GetComponent<Animator>();
-        _newInput=GetComponent<NewInput>();
-        _entrar=GetComponent<Animator>();
+        _animator = GetComponent<Animator>();
+        _newInput = GetComponent<NewInput>();
+        _entrar = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         PlayerMoveAnim();
@@ -30,7 +32,7 @@ public class PlayerAnimation : MonoBehaviour
 
     public void ent()
     {
-        if(Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.P))
             _entrar.SetTrigger("Entrar");
     }
 
@@ -39,7 +41,21 @@ public class PlayerAnimation : MonoBehaviour
         if (_newInput.attackPressed)
         {
             _animator.SetTrigger("Attack");
+
+            ActivateAttack(); // 🔥 activa la espada
+
             _newInput.attackPressed = false;
         }
+    }
+
+    void ActivateAttack()
+    {
+        attackPoint.SetActive(true);
+        Invoke(nameof(DeactivateAttack), 0.3f); // duración del golpe
+    }
+
+    void DeactivateAttack()
+    {
+        attackPoint.SetActive(false);
     }
 }
